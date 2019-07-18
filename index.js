@@ -14,8 +14,11 @@ const AliexScrape = (productId) => {
       data.priceDiscount = /window.runParams.actMaxPrice="(.*)";/.exec(response)[1];
       data.pricemrp = /window.runParams.maxPrice="(.*)";/.exec(response)[1];
       data.quantity = /window.runParams.totalAvailQuantity=(.*);/.exec(response)[1];
-      data.quantityMax = /window.runParams.buyLimit = "(.*)";/.exec(response)[1];
-      
+      const quantityMax = /window.runParams.buyLimit = "(.*)";/.exec(response);
+      if(quantityMax)
+          {
+              data.quantityMax = quantityMax[1];
+          }
       // attributes
       data.attributes = [];
       $(response).find('#j-product-info-sku').children().each((i, child) => {
