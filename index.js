@@ -92,7 +92,7 @@ const AliexScrape = (productId) => {
       return JSON.stringify(data);
     })
     .catch((error) => {
-      console.log(error);
+      return error;
     });
 }
 
